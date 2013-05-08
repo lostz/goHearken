@@ -30,7 +30,7 @@ func (s PostSort) Len() int {return len(s) }
 func (s PostSort) Swap(i,j int) {s[i],s[j] = s[j],s[i]}
 type ByDate struct { PostSort }
 
-func (s ByDate) Less(i,j int) bool {return s.PostSort[i].Date < s.PostSort[j].Date}
+func (s ByDate) Less(i,j int) bool {return s.PostSort[i].Date > s.PostSort[j].Date}
 
 func generateIndexes(webroot string,posts []Post,perPage int ){
     countPosts :=len(posts)
