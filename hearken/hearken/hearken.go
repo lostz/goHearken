@@ -3,7 +3,7 @@ package main
 import (
     "flag"
     "os"
-    "go_hearken/hearken"
+    "goHearken/hearken"
 )
 
 func main(){

@@ -21,7 +21,7 @@ func ProjectInit(projectName string,projectRoot string) {
         os.Exit(0)
     }
     fmt.Printf("project dir %s init finish",projectDir)
-    projectPostDir:=projectDir+"/post"
+    projectPostDir:=projectDir+"/posts"
     //projectStaticDir:=projectName+"/static"
     //projectTemplateDir:=projectName+"/templates"
     //projectDir :=[...]string{projectPostDir,projectStaticDir,projectTemplateDir}
