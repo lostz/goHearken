@@ -1,7 +1,8 @@
 package hearken
 
 import (
-    . "github.com/russross/blackfriday"
+    "github.com/knieriem/markdown"
+    "bytes"
     "io/ioutil"
     "fmt"
     "os"
@@ -155,25 +156,14 @@ func copyStatic(webroot string) {
     }
 }
 
-
-
-func convert2Html(contents string)   string {
-    htmlFlags :=0
-    htmlFlags |= HTML_USE_XHTML
-	htmlFlags |= HTML_USE_SMARTYPANTS
-	htmlFlags |= HTML_SMARTYPANTS_FRACTIONS
-	htmlFlags |= HTML_SMARTYPANTS_LATEX_DASHES
-    renderer := HtmlRenderer(htmlFlags, "", "")
-    extensions := 0
-	extensions |= EXTENSION_NO_INTRA_EMPHASIS
-	extensions |= EXTENSION_TABLES
-	extensions |= EXTENSION_FENCED_CODE
-	extensions |= EXTENSION_AUTOLINK
-	extensions |= EXTENSION_STRIKETHROUGH
-	extensions |= EXTENSION_SPACE_HEADERS
-    contentHtml := string(Markdown([]byte(contents),renderer,extensions))
+func convert2Html(contents string) string {
+    mdParser := markdown.NewParser(&markdown.Extensions{Smart: true})
+    buf := bytes.NewBuffer(nil)
+    mdParser.Markdown(bytes.NewBufferString(contents), markdown.ToHTML(buf))
+    contentHtml := buf.String()
     return contentHtml
 }
+
 
 
 
