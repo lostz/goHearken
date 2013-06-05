@@ -1,5 +1,6 @@
 {{define "post" }}
 {{template "header"}}
+<div class="post">
 <div id="title">
   <h1>{{.Title}}</h1>
   <span class="meta">{{.Date}}</span>
@@ -26,6 +27,5 @@
     })();
     </script>
 <!-- Duoshuo Comment END -->
-
 {{template "footer"}}
 {{end}}
