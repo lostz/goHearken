@@ -15,7 +15,7 @@ func main(){
     switch args[0] {
         case "init":
             hearken.ProjectInit(args[1],args[2])
-        case "post":
+        case "posts":
             postInfo:=hearken.ReadConfig()
             hearken.GeneratePost(postInfo.WebRoot,postInfo.PerPage)
         }
