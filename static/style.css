@@ -311,7 +311,7 @@ a:hover {
   margin-top: 84px;
 }
 .post img {
-  max-width: 100%;
+  max-width: 480px;
 }
 .post ul,
 .post ol {
