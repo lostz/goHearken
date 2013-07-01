@@ -1,17 +1,11 @@
 {{define "post" }}
 {{template "header"}}
-<div class="post">
-<div id="title">
+<div class="body">
+  <div class="post">
   <h1>{{.Title}}</h1>
-  <span class="meta">{{.Date}}</span>
- 
+  <span class="post-date">{{.Date}}</span>
+    {{.Html}}
 
-<div id="content">
-{{.Html}}
-</div>
-
-
-<p></p>
 <hr />
  <!-- Duoshuo Comment BEGIN -->
     <div class="ds-thread"></div>

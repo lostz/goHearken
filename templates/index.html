@@ -1,10 +1,10 @@
 {{define "index"}}
 {{template "header"}}
 {{range .Posts}}
+<div class="body">
 <div class="post">
 	<h1>
-	
-	<a href="{{.Link }}">{{.Title }}</a>		
+	  <a href="{{.Link }}">{{.Title }}</a>		
 	</h1>
 	<span class="post-date">{{.Date }}</span>
 	{{.Html }}
@@ -28,7 +28,6 @@
 {{end}}
   
 </div>     
-
-
+   
 {{template "footer"}}
 {{end}}
