@@ -1,0 +1,457 @@
+/*
+                        __
+   __                  /\ \
+  /'_`\_    ___ ___    \_\ \    ___
+ /'/'_` \ /' __` __`\  /'_` \  / __`\
+/\ \ \L\ \/\ \/\ \/\ \/\ \L\ \/\ \L\ \
+\ \ `\__,_\ \_\ \_\ \_\ \___,_\ \____/
+ \ `\_____\\/_/\/_/\/_/\/__,_ /\/___/
+  `\/_____/
+
+*/
+
+
+
+/* Body resets
+-------------------------------------------------- */
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  padding: 2rem;
+  font-family: Menlo, Monaco, monospace;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #666;
+  background-color: #fff;
+}
+
+p {
+  margin: 0 0 1.5rem;
+}
+
+h1, h2, h3 {
+  position: relative;
+  margin: 3rem 0 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.1;
+  color: #111;
+  text-rendering: optimizeLegibility;
+}
+h1:before,
+h2:before,
+h3:before {
+  position: absolute;
+  top: auto;
+  color: #ccc;
+  display: none;
+}
+h1:before {
+  content: "#";
+  left: -1.25em;
+}
+h2:before {
+  content: "##";
+  left: -2em;
+}
+h3:before {
+  content: "###";
+  left: -2.5em;
+}
+
+/* Emphasis */
+em,
+strong {
+  padding-left: .1rem;
+  padding-right: .1rem;
+}
+
+strong {
+  font-weight: bold;
+  color: #333;
+}
+strong:before,
+strong:after {
+  content: "**";
+}
+
+em:before,
+em:after {
+  content: "*";
+}
+
+/* Lists */
+ul, ol {
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+.body li {
+  list-style: none;
+}
+.body li:before {
+  content: "* ";
+  margin-left: -1.25em;
+  color: #ccc;
+}
+
+hr {
+  margin: 0;
+  border: 0;
+}
+hr:after {
+  display: block;
+  margin: 2rem 0;
+  content: "-----";
+  color: #ccc;
+}
+
+abbr {
+  background-color: #eee;
+  display: inline-block;
+  padding: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
+code, pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+code {
+  color: #d14;
+}
+code:before,
+code:after {
+  content: "`";
+  color: #ccc;
+}
+
+pre {
+  display: block;
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 28px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+pre code {
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+}
+pre code:before,
+pre code:after {
+  content: "";
+}
+.highlight {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+}
+.highlight pre {
+  margin-bottom: 0;
+}
+
+blockquote {
+  padding: 0 0 0 1.75rem;
+  margin: 0 3rem 1.5rem -2.25rem;
+  color: #999;
+  border-left: .5rem solid #e5e5e5;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+img {
+  display: block;
+  margin: 0 0 20px;
+  border-radius: 5px;
+}
+
+
+/* Links
+-------------------------------------------------- */
+a {
+  font-weight: inherit;
+  line-height: inherit;
+  color: #000;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Scaffolding
+-------------------------------------------------- */
+
+.container {
+  max-width: 66rem;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  color: #888;
+}
+.masthead:after {
+  display: block;
+  content: '----------';
+  margin: 4rem 0;
+  color: #ccc;
+}
+.masthead a {
+  color: #333;
+}
+.masthead ul {
+  list-style: none;
+}
+.masthead li {
+  display: inline-block;
+}
+.masthead li + li:before {
+  display: inline-block;
+  content: "\00B7 \00a0";
+  color: #ccc;
+}
+
+/* Avatar and tagline */
+.hr-short {
+  display: block;
+  width: 10rem;
+  margin: 2rem 0;
+}
+
+/* Avatar */
+.mdo,
+.mdo:after {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+.mdo {
+  position: relative;
+  margin-bottom: 2rem;
+  -webkit-transition: all 0.1s ease-in-out;
+     -moz-transition: all 0.1s ease-in-out;
+          transition: all 0.1s ease-in-out;
+}
+.mdo img {
+  width: 10rem;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+.mdo:hover {
+  opacity: .9;
+}
+.mdo:active {
+  opacity: .8;
+}
+.mdo:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  content: '';
+  box-shadow: inset 0 5px 10px rgba(0,0,0,.5);
+}
+
+
+
+/* Ads
+-------------------------------------------------- */
+
+.fusion-ads {
+  margin: 0 0 6rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.fusiontext {
+  color: #999;
+}
+.fusiontext:hover {
+  color: #2d692d;
+  text-decoration: none;
+}
+.fusionimg {
+  height: 90px;
+  margin-bottom: 1rem;
+}
+.fusion-ads .powered-by {
+  display: block;
+  margin-top: 1rem;
+}
+
+
+/* Posts
+-------------------------------------------------- */
+
+/* List of posts
+------------------------- */
+.posts,
+.fourohfour {
+  margin-bottom: 8rem;
+}
+.posts li a small {
+  font-size: 75%;
+  color: #999;
+}
+.posts li a:hover {
+  color: #000;
+  text-decoration: none;
+}
+.posts li a:hover small {
+  color: #000;
+}
+
+/* Single post
+------------------------- */
+.post {
+  position: relative;
+  margin-bottom: 8rem;
+}
+.post:after {
+  display: block;
+  content: '----------';
+  margin: 8rem 0;
+  color: #ccc;
+}
+.post img {
+  max-width: 100%;
+}
+.post ol {
+
+}
+.tweet-button {
+  margin: 14px 0;
+}
+.post-date {
+  display: block;
+  margin: -1rem 0 1rem;
+  color: #ccc;
+}
+
+.page {
+  padding-bottom: 8rem;
+}
+.page-title {
+  margin-bottom: 4rem;
+}
+
+.talk p {
+  margin-top: 1.5rem;
+}
+
+
+
+/* Pagination
+-------------------------------------------------- */
+
+.pagination {
+  margin-bottom: 8rem;
+  color: #ccc;
+}
+.pagination a,
+.pagination span {
+  display: inline-block;
+  padding: .5rem 1rem;
+}
+.pagination a:hover {
+  text-decoration: none;
+  background-color: #eee;
+  border-radius: .4rem;
+}
+
+
+
+
+/* Projects
+-------------------------------------------------- */
+
+.project {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+.project img {
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 4px;
+}
+
+
+
+/* Misc
+-------------------------------------------------- */
+
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.muted {
+  color: #777;
+}
+
+.gist-highlight {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+
+
+/* Responsive
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Increase body padding and font-sizes */
+  body {
+    padding: 3rem;
+    font-size: 1.8rem;
+    line-height: 1.75;
+  }
+  .fusion-ads {
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+    width: 14rem;
+    margin: 0;
+    text-align: right;
+  }
+  .fusion-ads img {
+    display: inline-block;
+  }
+  h1:before,
+  h2:before,
+  h3:before {
+    display: inline;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding: 6rem 3rem;
+  }
+}
