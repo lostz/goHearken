@@ -4,6 +4,7 @@ import (
     "github.com/knieriem/markdown"
     "bytes"
     "io/ioutil"
+    "time"
     "fmt"
     "os"
     "io"
@@ -77,7 +78,16 @@ func generateIndexes(webroot string,posts []Post,perPage int ){
 
 
 
+func ConvertDate(date string) string {
+     timeLayout := "200601021504"
+     ztime,err :=time.Parse(timeLayout,"201307041507")
+     if err!=nil{
+         fmt.Println(err)
+     }else{
+         return ztime.Format("2006年1月2日")
+     }
 
+}
 
 
 func GeneratePost(webroot string,perPage int ) {
@@ -116,7 +126,7 @@ func GeneratePost(webroot string,perPage int ) {
                 titleLineNum=i
             }
             if lineNum==2 {
-                date =string(mdData[titleLineNum+1:i])
+                date = GeneratePost(string(mdData[titleLineNum+1:i]))
                 contentLineNum =i
                 break
             }
