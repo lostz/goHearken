@@ -4,6 +4,7 @@ import (
     "github.com/knieriem/markdown"
     "bytes"
     "io/ioutil"
+    "time"
     "fmt"
     "os"
     "io"
@@ -15,7 +16,8 @@ import (
 type Post struct {
     Link string
     Title string
-    Date  string
+    Date  int
+    DateFormat string
     Html  string
 }
 
@@ -27,14 +29,12 @@ type Index struct {
 }
 
 type PostSort []Post
-func (s PostSort) Len() int {return len(s) }
+func (s PostSort ) Len() int {return len(s) }
+func (s PostSort) Less(i,j int) bool {return s[j].Date<s[i].Date}
 func (s PostSort) Swap(i,j int) {s[i],s[j] = s[j],s[i]}
-type ByDate struct { PostSort }
-
-func (s ByDate) Less(i,j int) bool {return s.PostSort[i].Date > s.PostSort[j].Date}
-
 func generateIndexes(webroot string,posts []Post,perPage int ){
     countPosts :=len(posts)
+    sort.Sort(PostSort(posts))
     var indexHtml *os.File
     pre :=""
     next :=""
@@ -65,7 +65,6 @@ func generateIndexes(webroot string,posts []Post,perPage int ){
             if err!=nil {
                 fmt.Println(err)
             }
-            sort.Sort(ByDate{postsPage})
             indexInfo :=Index{Pre:pre,Next:next,Posts:postsPage}
             indexParser.ExecuteTemplate(indexHtml,"index",indexInfo)
             pre =""
@@ -77,7 +76,14 @@ func generateIndexes(webroot string,posts []Post,perPage int ){
 
 
 
-
+func ConvertDate(date string) string {
+     timeLayout := "200601021504"
+     ztime,err :=time.Parse(timeLayout,date)
+     if err!=nil{
+         fmt.Println(err)
+     } 
+     return ztime.Format("2006年1月2日")
+}
 
 
 func GeneratePost(webroot string,perPage int ) {
@@ -116,14 +122,16 @@ func GeneratePost(webroot string,perPage int ) {
                 titleLineNum=i
             }
             if lineNum==2 {
-                date =string(mdData[titleLineNum+1:i])
+                date = string(mdData[titleLineNum+1:i])
                 contentLineNum =i
                 break
             }
         }
         contents =string(mdData[contentLineNum:])
         htmlContents := convert2Html(contents)
-        post :=Post{Link:"./"+date+".html",Title:title,Date:date,Html:htmlContents}
+        dateFormat :=ConvertDate(date)
+        dateInt,_ := strconv.Atoi(date)
+        post :=Post{Link:"./"+date+".html",Title:title,Date:dateInt,DateFormat:dateFormat,Html:htmlContents}
         htmlFile,err := os.Create(webroot+date+".html")
         if err!=nil {
             fmt.Println("html create error")
